@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6EE49B87C96305E12AD48E77 /* Pods_taipeiparkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352D771CB7D6886AD0C3EB17 /* Pods_taipeiparkTests.framework */; };
 		9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9271552025A93D009BD64B /* AppDelegate.swift */; };
 		9F9271582025A93D009BD64B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9271572025A93D009BD64B /* ViewController.swift */; };
 		9F92715B2025A93D009BD64B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9271592025A93D009BD64B /* Main.storyboard */; };
 		9F92715D2025A93D009BD64B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F92715C2025A93D009BD64B /* Assets.xcassets */; };
 		9F9271602025A93D009BD64B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F92715E2025A93D009BD64B /* LaunchScreen.storyboard */; };
 		9F92716B2025A93D009BD64B /* taipeiparkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F92716A2025A93D009BD64B /* taipeiparkTests.swift */; };
+		F9E5D8A4F3ECF091D0B9FBBC /* Pods_taipeipark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD5E628E823B31E428928B8 /* Pods_taipeipark.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		352D771CB7D6886AD0C3EB17 /* Pods_taipeiparkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taipeiparkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BD5E628E823B31E428928B8 /* Pods_taipeipark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taipeipark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9534DBC108CD0DC151A8D319 /* Pods-taipeipark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taipeipark.release.xcconfig"; path = "Pods/Target Support Files/Pods-taipeipark/Pods-taipeipark.release.xcconfig"; sourceTree = "<group>"; };
 		9F9271522025A93D009BD64B /* taipeipark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taipeipark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9271552025A93D009BD64B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F9271572025A93D009BD64B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +41,9 @@
 		9F9271662025A93D009BD64B /* taipeiparkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = taipeiparkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F92716A2025A93D009BD64B /* taipeiparkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taipeiparkTests.swift; sourceTree = "<group>"; };
 		9F92716C2025A93D009BD64B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFCD80DACBDD5A7A8802E52F /* Pods-taipeipark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taipeipark.debug.xcconfig"; path = "Pods/Target Support Files/Pods-taipeipark/Pods-taipeipark.debug.xcconfig"; sourceTree = "<group>"; };
+		E18F1B5859F0E77956BFFB12 /* Pods-taipeiparkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taipeiparkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-taipeiparkTests/Pods-taipeiparkTests.release.xcconfig"; sourceTree = "<group>"; };
+		F84E04C982A724240A970425 /* Pods-taipeiparkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taipeiparkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-taipeiparkTests/Pods-taipeiparkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9E5D8A4F3ECF091D0B9FBBC /* Pods_taipeipark.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EE49B87C96305E12AD48E77 /* Pods_taipeiparkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +72,8 @@
 				9F9271542025A93D009BD64B /* taipeipark */,
 				9F9271692025A93D009BD64B /* taipeiparkTests */,
 				9F9271532025A93D009BD64B /* Products */,
+				EFAC5F2A1FDA3C5FC9BA5A09 /* Pods */,
+				F78E5C17C38CAB9E0AF18848 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +108,26 @@
 			path = taipeiparkTests;
 			sourceTree = "<group>";
 		};
+		EFAC5F2A1FDA3C5FC9BA5A09 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AFCD80DACBDD5A7A8802E52F /* Pods-taipeipark.debug.xcconfig */,
+				9534DBC108CD0DC151A8D319 /* Pods-taipeipark.release.xcconfig */,
+				F84E04C982A724240A970425 /* Pods-taipeiparkTests.debug.xcconfig */,
+				E18F1B5859F0E77956BFFB12 /* Pods-taipeiparkTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F78E5C17C38CAB9E0AF18848 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3BD5E628E823B31E428928B8 /* Pods_taipeipark.framework */,
+				352D771CB7D6886AD0C3EB17 /* Pods_taipeiparkTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +135,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F92716F2025A93D009BD64B /* Build configuration list for PBXNativeTarget "taipeipark" */;
 			buildPhases = (
+				436DDAEC23652B2AE664717E /* [CP] Check Pods Manifest.lock */,
 				9F92714E2025A93D009BD64B /* Sources */,
 				9F92714F2025A93D009BD64B /* Frameworks */,
 				9F9271502025A93D009BD64B /* Resources */,
+				0F309C7B8221FAE6BEA675F8 /* [CP] Embed Pods Frameworks */,
+				55B2DE7D0EA0FB566ABA2B7B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -120,9 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F9271722025A93D009BD64B /* Build configuration list for PBXNativeTarget "taipeiparkTests" */;
 			buildPhases = (
+				9EAB1CE1E2CC5924DE5897D6 /* [CP] Check Pods Manifest.lock */,
 				9F9271622025A93D009BD64B /* Sources */,
 				9F9271632025A93D009BD64B /* Frameworks */,
 				9F9271642025A93D009BD64B /* Resources */,
+				5043FA7D3E68CF97FBE1B05B /* [CP] Embed Pods Frameworks */,
+				3949C476FC8791F0275EBF89 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +231,125 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F309C7B8221FAE6BEA675F8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-taipeipark/Pods-taipeipark-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-taipeipark/Pods-taipeipark-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3949C476FC8791F0275EBF89 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-taipeiparkTests/Pods-taipeiparkTests-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-taipeiparkTests/Pods-taipeiparkTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		436DDAEC23652B2AE664717E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-taipeipark-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5043FA7D3E68CF97FBE1B05B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-taipeiparkTests/Pods-taipeiparkTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-taipeiparkTests/Pods-taipeiparkTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55B2DE7D0EA0FB566ABA2B7B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-taipeipark/Pods-taipeipark-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-taipeipark/Pods-taipeipark-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9EAB1CE1E2CC5924DE5897D6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-taipeiparkTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9F92714E2025A93D009BD64B /* Sources */ = {
@@ -351,6 +508,7 @@
 		};
 		9F9271702025A93D009BD64B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFCD80DACBDD5A7A8802E52F /* Pods-taipeipark.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -367,6 +525,7 @@
 		};
 		9F9271712025A93D009BD64B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9534DBC108CD0DC151A8D319 /* Pods-taipeipark.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -383,6 +542,7 @@
 		};
 		9F9271732025A93D009BD64B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F84E04C982A724240A970425 /* Pods-taipeiparkTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -400,6 +560,7 @@
 		};
 		9F9271742025A93D009BD64B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E18F1B5859F0E77956BFFB12 /* Pods-taipeiparkTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
