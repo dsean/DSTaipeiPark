@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  ParkListViewController.swift
 //  taipeipark
 //
-//  Created by 楊德忻 on 2018/2/3.
+//  Created by 楊德忻 on 2018/2/6.
 //  Copyright © 2018年 sean. All rights reserved.
 //
 
@@ -51,6 +51,7 @@ class ParkListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // Set park data to list view
         if let park = self.parkTitles?[indexPath.row], let data = self.groupedParkDatas[park]?[0] {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ParkListTableCell", for: indexPath) as! ParkListTableCell
             cell.url = data.image
@@ -60,6 +61,7 @@ class ParkListViewController: UIViewController, UITableViewDelegate, UITableView
             cell.reloadUI()
             return cell
         }
+        // Loading cell.
         let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
         return cell
     }

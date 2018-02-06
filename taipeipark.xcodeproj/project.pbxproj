@@ -12,6 +12,7 @@
 		9F169179202A0FEE002760FD /* ParkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169177202A0FED002760FD /* ParkData.swift */; };
 		9F16917A202A0FEE002760FD /* ParkDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169178202A0FED002760FD /* ParkDataManager.swift */; };
 		9F169180202A15E2002760FD /* ParkListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16917F202A15E2002760FD /* ParkListTableCell.swift */; };
+		9F169182202A32C9002760FD /* ParkDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169181202A32C9002760FD /* ParkDetailData.swift */; };
 		9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9271552025A93D009BD64B /* AppDelegate.swift */; };
 		9F92715B2025A93D009BD64B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9271592025A93D009BD64B /* Main.storyboard */; };
 		9F92715D2025A93D009BD64B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F92715C2025A93D009BD64B /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		9F169177202A0FED002760FD /* ParkData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkData.swift; sourceTree = "<group>"; };
 		9F169178202A0FED002760FD /* ParkDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkDataManager.swift; sourceTree = "<group>"; };
 		9F16917F202A15E2002760FD /* ParkListTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkListTableCell.swift; sourceTree = "<group>"; };
+		9F169181202A32C9002760FD /* ParkDetailData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkDetailData.swift; sourceTree = "<group>"; };
 		9F9271522025A93D009BD64B /* taipeipark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taipeipark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9271552025A93D009BD64B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F92715A2025A93D009BD64B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		9F169176202A0FED002760FD /* ParkData */ = {
 			isa = PBXGroup;
 			children = (
+				9F169181202A32C9002760FD /* ParkDetailData.swift */,
 				9F169177202A0FED002760FD /* ParkData.swift */,
 				9F169178202A0FED002760FD /* ParkDataManager.swift */,
 			);
@@ -433,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F169182202A32C9002760FD /* ParkDetailData.swift in Sources */,
 				9F169179202A0FEE002760FD /* ParkData.swift in Sources */,
 				9F169174202A0D83002760FD /* ParkListViewController.swift in Sources */,
 				9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */,
