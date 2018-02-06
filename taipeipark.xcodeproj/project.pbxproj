@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6EE49B87C96305E12AD48E77 /* Pods_taipeiparkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352D771CB7D6886AD0C3EB17 /* Pods_taipeiparkTests.framework */; };
+		9F169171202A07EB002760FD /* ParkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16916F202A07EB002760FD /* ParkData.swift */; };
+		9F169172202A07EB002760FD /* ParkDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169170202A07EB002760FD /* ParkDataManager.swift */; };
 		9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9271552025A93D009BD64B /* AppDelegate.swift */; };
 		9F9271582025A93D009BD64B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9271572025A93D009BD64B /* ViewController.swift */; };
 		9F92715B2025A93D009BD64B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9271592025A93D009BD64B /* Main.storyboard */; };
@@ -31,6 +33,8 @@
 		352D771CB7D6886AD0C3EB17 /* Pods_taipeiparkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taipeiparkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD5E628E823B31E428928B8 /* Pods_taipeipark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taipeipark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9534DBC108CD0DC151A8D319 /* Pods-taipeipark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taipeipark.release.xcconfig"; path = "Pods/Target Support Files/Pods-taipeipark/Pods-taipeipark.release.xcconfig"; sourceTree = "<group>"; };
+		9F16916F202A07EB002760FD /* ParkData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkData.swift; sourceTree = "<group>"; };
+		9F169170202A07EB002760FD /* ParkDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkDataManager.swift; sourceTree = "<group>"; };
 		9F9271522025A93D009BD64B /* taipeipark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taipeipark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9271552025A93D009BD64B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F9271572025A93D009BD64B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F16916C202A07EB002760FD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9F16916D202A07EB002760FD /* Controllers */,
+				9F16916E202A07EB002760FD /* ParkData */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		9F16916D202A07EB002760FD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9F16916E202A07EB002760FD /* ParkData */ = {
+			isa = PBXGroup;
+			children = (
+				9F16916F202A07EB002760FD /* ParkData.swift */,
+				9F169170202A07EB002760FD /* ParkDataManager.swift */,
+			);
+			path = ParkData;
+			sourceTree = "<group>";
+		};
 		9F9271492025A93D009BD64B = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +118,7 @@
 		9F9271542025A93D009BD64B /* taipeipark */ = {
 			isa = PBXGroup;
 			children = (
+				9F16916C202A07EB002760FD /* Classes */,
 				9F9271552025A93D009BD64B /* AppDelegate.swift */,
 				9F9271572025A93D009BD64B /* ViewController.swift */,
 				9F9271592025A93D009BD64B /* Main.storyboard */,
@@ -241,12 +271,20 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-taipeipark/Pods-taipeipark-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -299,12 +337,20 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-taipeiparkTests/Pods-taipeiparkTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -356,8 +402,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F169171202A07EB002760FD /* ParkData.swift in Sources */,
 				9F9271582025A93D009BD64B /* ViewController.swift in Sources */,
 				9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */,
+				9F169172202A07EB002760FD /* ParkDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,4 +33,29 @@ class taipeiparkTests: XCTestCase {
         }
     }
     
+    func testRequestParkInfo() {
+        let expectation = self.expectation(description: "Expectation")
+        ParkDataManager.sharedManager.requestParkInfo { (datas, success) in
+            XCTAssert(success, "api issue")
+            XCTAssert(datas != nil)
+            XCTAssert(datas!.count > 0)
+            for key in datas!.keys {
+                for data in datas![key]! {
+                    XCTAssert(data.parkName != nil && !data.parkName.isEmpty)
+                    XCTAssert(data.introduction != nil, "introduction: \(data.introduction!)")
+                }
+            }
+            expectation.fulfill()
+        }
+        self.waitForExpectations(timeout: 30) { (exp) in
+            
+        }
+    }
+    
+    func testParseResults() {
+        // !!!:must after testRequestParkInfo.
+        XCTAssertTrue(ParkDataManager.sharedManager.parseResults(rawString: UserDefaults.standard.string(forKey: KEY)))
+        XCTAssertFalse(ParkDataManager.sharedManager.parseResults(rawString: ""))
+    }
+    
 }

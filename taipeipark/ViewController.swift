@@ -8,8 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+import Alamofire
+import SwiftyJSON
 
+class ViewController: UIViewController {
+    var fileURL: URL?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
