@@ -30,6 +30,8 @@ class ParkDataManager {
     
     private(set) var groupedParkDatas:[String:[ParkData]]?
     
+    // Request Taipei park data.
+    
     func requestParkInfo(completion:@escaping ((_ groupedParkDatas:[String:[ParkData]]?, _ success:Bool)->Void)){
         
         let parkInfoUrl = "https://beta.data.taipei/api/getDatasetInfo/downloadResource?id=a132516d-d2f3-4e23-866e-27e616b3855a&rid=8f6fcb24-290b-461d-9d34-72ed1b3f51f0"
@@ -55,6 +57,8 @@ class ParkDataManager {
         }
         
     }
+    
+    // Parse Taipei park data.
     
     @discardableResult func parseResults(rawString:String?) -> Bool {
         if let strResults = rawString,

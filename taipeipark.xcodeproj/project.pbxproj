@@ -11,6 +11,7 @@
 		9F169174202A0D83002760FD /* ParkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169173202A0D83002760FD /* ParkListViewController.swift */; };
 		9F169179202A0FEE002760FD /* ParkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169177202A0FED002760FD /* ParkData.swift */; };
 		9F16917A202A0FEE002760FD /* ParkDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169178202A0FED002760FD /* ParkDataManager.swift */; };
+		9F169180202A15E2002760FD /* ParkListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16917F202A15E2002760FD /* ParkListTableCell.swift */; };
 		9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9271552025A93D009BD64B /* AppDelegate.swift */; };
 		9F92715B2025A93D009BD64B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9271592025A93D009BD64B /* Main.storyboard */; };
 		9F92715D2025A93D009BD64B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F92715C2025A93D009BD64B /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		9F169173202A0D83002760FD /* ParkListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkListViewController.swift; sourceTree = "<group>"; };
 		9F169177202A0FED002760FD /* ParkData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkData.swift; sourceTree = "<group>"; };
 		9F169178202A0FED002760FD /* ParkDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkDataManager.swift; sourceTree = "<group>"; };
+		9F16917F202A15E2002760FD /* ParkListTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkListTableCell.swift; sourceTree = "<group>"; };
 		9F9271522025A93D009BD64B /* taipeipark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taipeipark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9271552025A93D009BD64B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F92715A2025A93D009BD64B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		9F16916C202A07EB002760FD /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9F16917B202A1532002760FD /* Views */,
 				9F169175202A0FED002760FD /* Model */,
 				9F16916D202A07EB002760FD /* Controllers */,
 			);
@@ -102,6 +105,22 @@
 				9F169178202A0FED002760FD /* ParkDataManager.swift */,
 			);
 			path = ParkData;
+			sourceTree = "<group>";
+		};
+		9F16917B202A1532002760FD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9F16917E202A15E2002760FD /* Cell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9F16917E202A15E2002760FD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9F16917F202A15E2002760FD /* ParkListTableCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		9F9271492025A93D009BD64B = {
@@ -282,6 +301,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -291,6 +311,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -348,6 +369,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -357,6 +379,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -414,6 +437,7 @@
 				9F169174202A0D83002760FD /* ParkListViewController.swift in Sources */,
 				9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */,
 				9F16917A202A0FEE002760FD /* ParkDataManager.swift in Sources */,
+				9F169180202A15E2002760FD /* ParkListTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

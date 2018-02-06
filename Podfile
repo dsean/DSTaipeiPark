@@ -12,6 +12,7 @@ target 'taipeipark' do
   pod 'AlamofireObjectMapper'
   pod 'Alamofire-SwiftyJSON'
   pod ’SVProgressHUD’
+  pod 'SDWebImage'
 end
 target 'taipeiparkTests' do
 use_frameworks!
@@ -23,4 +24,5 @@ use_frameworks!
   pod 'AlamofireObjectMapper'
   pod 'Alamofire-SwiftyJSON'
   pod ’SVProgressHUD’
+  pod 'SDWebImage'
 end

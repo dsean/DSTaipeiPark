@@ -52,6 +52,8 @@ class ParkData:Mappable, Equatable {
     
     required init?(map: Map) {}
     
+    // Mapping park data with JSON.
+    
     func mapping(map: Map) {
         parkName <- map["ParkName"]
         openTime <- map["OpenTime"]
@@ -63,6 +65,7 @@ class ParkData:Mappable, Equatable {
         latitude <- map["Latitude"]
         longitude <- map["Longitude"]
         area <- map["Area"]
+        administrativeArea <- map["AdministrativeArea"]
         managementName <- map["ManagementName"]
         manageTelephone <- map["ManageTelephone"]
     }
