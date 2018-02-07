@@ -208,6 +208,21 @@
             </objects>
             <point key="canvasLocation" x="1313" y="676"/>
         </scene>
+        <!--Park Info Detail View Controller-->
+        <scene sceneID="20q-eC-tt7">
+            <objects>
+                <viewController storyboardIdentifier="ParkInfoDetailViewControllerCV" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4TN-Kc-tf9" customClass="ParkInfoDetailViewController" customModule="taipeipark" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="olh-I0-v5N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="GeI-Ph-WML"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7BN-Mk-5CG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2257" y="482"/>
+        </scene>
         <!--地圖-->
         <scene sceneID="qac-Cn-c7H">
             <objects>

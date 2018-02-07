@@ -13,6 +13,8 @@ import SwiftyJSON
 
 let KEY:String = "PARK_DATA"
 
+let DETAIL_KEY:String = "PARK_DETAIL_DATA"
+
 class ParkDataManager {
     
     private static var instance:ParkDataManager!
@@ -34,10 +36,10 @@ class ParkDataManager {
     
     func requestParkInfo(completion:@escaping ((_ groupedParkDatas:[String:[ParkData]]?, _ success:Bool)->Void)){
         
-        let parkInfoUrl = "https://beta.data.taipei/api/getDatasetInfo/downloadResource?id=a132516d-d2f3-4e23-866e-27e616b3855a&rid=8f6fcb24-290b-461d-9d34-72ed1b3f51f0"
-        
+        let parkInfoUrl = "https://beta.data.taipei/api/getDatasetInfo/downloadResource"
+        let para=["id": "a132516d-d2f3-4e23-866e-27e616b3855a","rid": "8f6fcb24-290b-461d-9d34-72ed1b3f51f0"];
         self.groupedParkDatas = nil
-        Alamofire.request(parkInfoUrl).validate().responseJSON { response in
+        Alamofire.request(parkInfoUrl ,parameters: para).validate().responseJSON { response in
             var success = false
             switch response.result {
             case .success(let value):
@@ -62,7 +64,7 @@ class ParkDataManager {
     
     @discardableResult func parseResults(rawString:String?) -> Bool {
         if let strResults = rawString,
-        let parkDatas = [ParkData](JSONString: strResults), parkDatas.count > 0 {
+            let parkDatas = [ParkData](JSONString: strResults), parkDatas.count > 0 {
             self.groupedParkDatas = [String:[ParkData]]()
             for data in parkDatas {
                 if var savedDatas = self.groupedParkDatas?[data.parkName] {
@@ -71,6 +73,55 @@ class ParkDataManager {
                 }
                 else {
                     self.groupedParkDatas?.updateValue([data], forKey: data.parkName)
+                }
+            }
+            return true
+        }
+        return false
+    }
+    
+    private(set) var groupedParkDetailDatas:[String:[ParkDetailData]]?
+    
+    // Request Taipei park detail data.
+    
+    func requestParkDetailInfo(parkName:String, completion:@escaping ((_ groupedParkDetailDatas:[String:[ParkDetailData]]?, _ success:Bool)->Void)){
+        
+        let parkInfoUrl = "http://data.taipei/opendata/datalist/apiAccess"
+        self.groupedParkDetailDatas = nil
+        let para=["q": parkName,"rid": "bf073841-c734-49bf-a97f-3757a6013812", "scope": "resourceAquire"];
+        Alamofire.request(parkInfoUrl ,parameters: para).validate().responseJSON { response in
+            var success = false
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let strResults = json["result"]["results"].rawString()
+                success = self.parseDetailResults(rawString: strResults)
+                if success {
+                    UserDefaults.standard.set(strResults, forKey: DETAIL_KEY)
+                    UserDefaults.standard.synchronize()
+                }
+            case .failure( _): break
+            }
+            if !success {
+                self.parseDetailResults(rawString: UserDefaults.standard.string(forKey: DETAIL_KEY))
+            }
+            completion(self.groupedParkDetailDatas, success)
+        }
+    }
+    
+    // Parse Taipei park detail data.
+    
+    @discardableResult func parseDetailResults(rawString:String?) -> Bool {
+        if let strResults = rawString,
+            let parkDatas = [ParkDetailData](JSONString: strResults), parkDatas.count > 0 {
+            self.groupedParkDetailDatas = [String:[ParkDetailData]]()
+            for data in parkDatas {
+                if var savedDatas = self.groupedParkDetailDatas?[data.parkName] {
+                    savedDatas.append(data)
+                    self.groupedParkDetailDatas?.updateValue(savedDatas, forKey: data.parkName)
+                }
+                else {
+                    self.groupedParkDetailDatas?.updateValue([data], forKey: data.parkName)
                 }
             }
             return true

@@ -34,7 +34,7 @@ class ParkListViewController: UIViewController, UITableViewDelegate, UITableView
         parkListTableView.delegate = self
         parkListTableView.dataSource = self
         parkListTableView.tableFooterView = UIView()
-        self.title = "台北市公園景點"
+        self.title = "台北市公園列表"
         
         updatGroupedParkDatas()
     }
@@ -67,7 +67,9 @@ class ParkListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if let park = self.parkTitles?[indexPath.row], let data = self.groupedParkDatas[park]?[0] {
+            goToDetailParkInfoView(title: park,data: data)
+        }
     }
     
     // MARK: function
@@ -90,6 +92,17 @@ class ParkListViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             })
         }
+    }
+    
+    // MARK: Action
+    
+    func goToDetailParkInfoView(title:String, data:ParkData) {
+        // Go to DetailParkInfoViewController.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailViewController = (storyboard.instantiateViewController(withIdentifier: "ParkInfoDetailViewControllerCV") as? ParkInfoDetailViewController)!
+        detailViewController.parkTitle = title
+        detailViewController.groupedParkData = data
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 
