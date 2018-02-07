@@ -16,6 +16,9 @@
 		9F169184202A939D002760FD /* ParkInfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169183202A939D002760FD /* ParkInfoDetailViewController.swift */; };
 		9F169187202AA763002760FD /* ParkDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169185202AA763002760FD /* ParkDetailCell.swift */; };
 		9F169188202AA763002760FD /* ParkDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F169186202AA763002760FD /* ParkDetailCell.xib */; };
+		9F16918B202AB369002760FD /* RelatedParkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F169189202AB368002760FD /* RelatedParkCollectionViewCell.xib */; };
+		9F16918C202AB369002760FD /* RelatedParkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16918A202AB368002760FD /* RelatedParkCollectionViewCell.swift */; };
+		9F16918E202AC200002760FD /* RelatedParkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F16918D202AC200002760FD /* RelatedParkViewController.swift */; };
 		9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9271552025A93D009BD64B /* AppDelegate.swift */; };
 		9F92715B2025A93D009BD64B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9271592025A93D009BD64B /* Main.storyboard */; };
 		9F92715D2025A93D009BD64B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F92715C2025A93D009BD64B /* Assets.xcassets */; };
@@ -46,6 +49,9 @@
 		9F169183202A939D002760FD /* ParkInfoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkInfoDetailViewController.swift; sourceTree = "<group>"; };
 		9F169185202AA763002760FD /* ParkDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkDetailCell.swift; sourceTree = "<group>"; };
 		9F169186202AA763002760FD /* ParkDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParkDetailCell.xib; sourceTree = "<group>"; };
+		9F169189202AB368002760FD /* RelatedParkCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelatedParkCollectionViewCell.xib; sourceTree = "<group>"; };
+		9F16918A202AB368002760FD /* RelatedParkCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelatedParkCollectionViewCell.swift; sourceTree = "<group>"; };
+		9F16918D202AC200002760FD /* RelatedParkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelatedParkViewController.swift; sourceTree = "<group>"; };
 		9F9271522025A93D009BD64B /* taipeipark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taipeipark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9271552025A93D009BD64B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F92715A2025A93D009BD64B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,6 +99,7 @@
 		9F16916D202A07EB002760FD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9F16918D202AC200002760FD /* RelatedParkViewController.swift */,
 				9F169183202A939D002760FD /* ParkInfoDetailViewController.swift */,
 				9F169173202A0D83002760FD /* ParkListViewController.swift */,
 			);
@@ -128,6 +135,8 @@
 		9F16917E202A15E2002760FD /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				9F16918A202AB368002760FD /* RelatedParkCollectionViewCell.swift */,
+				9F169189202AB368002760FD /* RelatedParkCollectionViewCell.xib */,
 				9F169185202AA763002760FD /* ParkDetailCell.swift */,
 				9F169186202AA763002760FD /* ParkDetailCell.xib */,
 				9F16917F202A15E2002760FD /* ParkListTableCell.swift */,
@@ -289,6 +298,7 @@
 				9F169188202AA763002760FD /* ParkDetailCell.xib in Resources */,
 				9F9271602025A93D009BD64B /* LaunchScreen.storyboard in Resources */,
 				9F92715D2025A93D009BD64B /* Assets.xcassets in Resources */,
+				9F16918B202AB369002760FD /* RelatedParkCollectionViewCell.xib in Resources */,
 				9F92715B2025A93D009BD64B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,6 +462,8 @@
 				9F169179202A0FEE002760FD /* ParkData.swift in Sources */,
 				9F169174202A0D83002760FD /* ParkListViewController.swift in Sources */,
 				9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */,
+				9F16918E202AC200002760FD /* RelatedParkViewController.swift in Sources */,
+				9F16918C202AB369002760FD /* RelatedParkCollectionViewCell.swift in Sources */,
 				9F16917A202A0FEE002760FD /* ParkDataManager.swift in Sources */,
 				9F169180202A15E2002760FD /* ParkListTableCell.swift in Sources */,
 			);

@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 
 class ParkListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     //Pre-linked with IBOutlets
     @IBOutlet weak var parkListTableView: UITableView!
     

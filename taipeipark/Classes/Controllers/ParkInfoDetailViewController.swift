@@ -11,8 +11,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ParkDetailCellDelegate {
     
+    //Pre-linked with IBOutlets
     @IBOutlet weak var parkImageView: UIImageView!
     @IBOutlet weak var parkTableView: UITableView!
     private var groupedParkDetailDatas:[String:[ParkDetailData]]!
@@ -61,6 +62,15 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
         cell.locationLabel.text = location
         cell.introLabel.text = self.groupedParkData!.introduction
         cell.openTimeLabel.text = "開放時間：\(self.groupedParkData!.openTime)"
+        cell.relatedCollectionView.isHidden = true
+        cell.relatedTitleLabel.isHidden = true
+        if self.groupedParkDetailDatas != nil {
+            cell.relatedCollectionView.isHidden = false
+            cell.relatedTitleLabel.isHidden = false
+            cell.relatedDatas = self.groupedParkDetailDatas[self.parkTitle!]
+            cell.delegate = self
+            cell.relatedCollectionView.reloadData()
+        }
         return cell
     }
     
@@ -79,7 +89,9 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
                     let noDataAlert = UIAlertController(title: "無相關景點", message: useCache ? "":"", preferredStyle: .alert)
                     noDataAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self?.present(noDataAlert, animated: true, completion: nil)
+                    self?.groupedParkDetailDatas = nil
                 }
+                self?.parkTableView.reloadData()
             })
         }
     }
@@ -101,6 +113,27 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
             parkImageView.sd_setImage(with: imageUrl, placeholderImage: nil, options: .highPriority, completed: nil)
         }
         self.parkTableView.reloadData()
+    }
+    
+    // MARK: - ParkDetailCellDelegate
+    
+    func onTouchUpInside(name:String) {
+        for data in self.groupedParkDetailDatas[self.parkTitle!]! {
+            if data.name == name {
+                goToRelatedParkView(title: name, data: data)
+            }
+        }
+    }
+    
+    // MARK: Action
+    
+    func goToRelatedParkView(title:String, data:ParkDetailData) {
+        // Go to RelatedParkViewController.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailViewController = (storyboard.instantiateViewController(withIdentifier: "RelatedParkViewControllerCV") as? RelatedParkViewController)!
+        detailViewController.parkTitle = title
+        detailViewController.groupedParkData = data
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 

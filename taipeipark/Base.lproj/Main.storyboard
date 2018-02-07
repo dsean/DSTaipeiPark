@@ -246,7 +246,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7BN-Mk-5CG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2066.4000000000001" y="540.17991004497753"/>
+            <point key="canvasLocation" x="2102" y="517"/>
         </scene>
         <!--地圖-->
         <scene sceneID="qac-Cn-c7H">
@@ -282,6 +282,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7mf-qF-94e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="652" y="1351"/>
+        </scene>
+        <!--Related Park View Controller-->
+        <scene sceneID="wRi-Vx-qnW">
+            <objects>
+                <viewController storyboardIdentifier="RelatedParkViewControllerCV" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lHC-OX-a1J" customClass="RelatedParkViewController" customModule="taipeipark" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Wr-PY-wSn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s2P-5n-kzH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="280" id="h7i-ft-LQu"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yq8-fy-Mfz">
+                                <rect key="frame" x="0.0" y="280" width="375" height="387"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yq8-fy-Mfz" firstAttribute="leading" secondItem="iol-So-jjE" secondAttribute="leading" id="6st-Rk-ykb"/>
+                            <constraint firstItem="s2P-5n-kzH" firstAttribute="trailing" secondItem="iol-So-jjE" secondAttribute="trailing" id="8T5-0e-HBS"/>
+                            <constraint firstItem="yq8-fy-Mfz" firstAttribute="top" secondItem="s2P-5n-kzH" secondAttribute="bottom" id="IU6-lB-OcQ"/>
+                            <constraint firstItem="s2P-5n-kzH" firstAttribute="top" secondItem="8Wr-PY-wSn" secondAttribute="top" id="PVn-Qc-CGy"/>
+                            <constraint firstItem="yq8-fy-Mfz" firstAttribute="bottom" secondItem="iol-So-jjE" secondAttribute="bottom" id="RNC-Tn-shZ"/>
+                            <constraint firstItem="s2P-5n-kzH" firstAttribute="leading" secondItem="iol-So-jjE" secondAttribute="leading" id="bGh-v9-U6S"/>
+                            <constraint firstItem="yq8-fy-Mfz" firstAttribute="trailing" secondItem="iol-So-jjE" secondAttribute="trailing" id="cbC-E2-yu4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iol-So-jjE"/>
+                    </view>
+                    <connections>
+                        <outlet property="parkImageView" destination="s2P-5n-kzH" id="Cs4-ti-FiI"/>
+                        <outlet property="parkTableView" destination="yq8-fy-Mfz" id="7rk-MG-MhM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1PE-qR-fsW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2786" y="517"/>
         </scene>
     </scenes>
     <resources>
