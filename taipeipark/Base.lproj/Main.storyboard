@@ -192,10 +192,10 @@
             </objects>
             <point key="canvasLocation" x="654.39999999999998" y="-10.794602698650676"/>
         </scene>
-        <!--View Controller-->
+        <!--Park Map View Controller-->
         <scene sceneID="ZMR-Ur-5s4">
             <objects>
-                <viewController id="sgJ-Ki-yZK" sceneMemberID="viewController">
+                <viewController id="sgJ-Ki-yZK" customClass="ParkMapViewController" customModule="taipeipark" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E22-eZ-yBZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -206,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFx-MO-gAj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313" y="676"/>
+            <point key="canvasLocation" x="1312.8" y="675.11244377811101"/>
         </scene>
         <!--Park Info Detail View Controller-->
         <scene sceneID="20q-eC-tt7">

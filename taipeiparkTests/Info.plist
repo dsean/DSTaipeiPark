@@ -18,6 +18,12 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Allow to assess your location even when you are not using the APP?</string>
+    <key>NSLocationUsageDescription</key>
+    <string>Allow the APP to assess your location ?</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Allow to assess your location when you are using the APP?</string>
     <key>NSAppTransportSecurity</key>
     <dict>
         <key>NSAllowsArbitraryLoads</key>
