@@ -9,7 +9,10 @@ target 'taipeipark' do
   pod 'Alamofire'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'AlamofireObjectMapper'
+  pod 'Alamofire-SwiftyJSON'
   pod ’SVProgressHUD’
+  pod 'SDWebImage'
 end
 target 'taipeiparkTests' do
 use_frameworks!
@@ -18,5 +21,8 @@ use_frameworks!
   pod 'Alamofire'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'AlamofireObjectMapper'
+  pod 'Alamofire-SwiftyJSON'
   pod ’SVProgressHUD’
+  pod 'SDWebImage'
 end
