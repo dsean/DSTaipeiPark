@@ -11,28 +11,57 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ParkInfoDetailViewController: UIViewController {
+class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var parkImageView: UIImageView!
+    @IBOutlet weak var parkTableView: UITableView!
     private var groupedParkDetailDatas:[String:[ParkDetailData]]!
     var groupedParkData:ParkData!
     var parkTitle:String?
+    
+    var parkName:String = ""
+    var location:String = ""
     
     // MARK: lifCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.parkTableView.register(UINib(nibName: "ParkDetailCell", bundle: nil), forCellReuseIdentifier: "ParkDetailCell")
+        parkTableView.separatorStyle = .none
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        parkTableView.delegate = self
+        parkTableView.dataSource = self
+        
+        updateDetailUI()
+        updatGroupedParkDatas()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.title = parkTitle
+    // MARK: - Table view data source
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ParkDetailCell", for: indexPath) as! ParkDetailCell
         
-        updatGroupedParkDatas()
+        cell.parkNameLabel.text = parkName
+        cell.locationLabel.text = location
+        cell.introLabel.text = self.groupedParkData!.introduction
+        cell.openTimeLabel.text = "開放時間：\(self.groupedParkData!.openTime)"
+        return cell
     }
     
     // MARK: function
@@ -53,6 +82,25 @@ class ParkInfoDetailViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    func updateDetailUI() {
+        self.title = groupedParkData?.parkName
+        
+        parkName = self.groupedParkData!.parkName
+        if self.groupedParkData!.parkType != nil {
+            parkName = parkName + "(\(self.groupedParkData!.parkType))"
+        }
+        
+        location = self.groupedParkData!.administrativeArea
+        if self.groupedParkData!.location != nil {
+            location = location + " \(self.groupedParkData!.location!)"
+        }
+        
+        if let image = groupedParkData!.image, let imageUrl = URL(string: image) {
+            parkImageView.sd_setImage(with: imageUrl, placeholderImage: nil, options: .highPriority, completed: nil)
+        }
+        self.parkTableView.reloadData()
     }
 }
 

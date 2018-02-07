@@ -215,13 +215,38 @@
                     <view key="view" contentMode="scaleToFill" id="olh-I0-v5N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j0c-Sm-5aj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="280" id="HPW-To-MwU"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sbi-yc-Q2b">
+                                <rect key="frame" x="0.0" y="280" width="375" height="387"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Sbi-yc-Q2b" firstAttribute="top" secondItem="j0c-Sm-5aj" secondAttribute="bottom" id="3cE-Ok-jKT"/>
+                            <constraint firstItem="Sbi-yc-Q2b" firstAttribute="leading" secondItem="GeI-Ph-WML" secondAttribute="leading" id="7WQ-of-AOn"/>
+                            <constraint firstItem="Sbi-yc-Q2b" firstAttribute="trailing" secondItem="GeI-Ph-WML" secondAttribute="trailing" id="enF-Cm-5UP"/>
+                            <constraint firstItem="j0c-Sm-5aj" firstAttribute="leading" secondItem="GeI-Ph-WML" secondAttribute="leading" id="k44-Ag-WRI"/>
+                            <constraint firstItem="j0c-Sm-5aj" firstAttribute="top" secondItem="olh-I0-v5N" secondAttribute="top" id="tUW-O0-Gkg"/>
+                            <constraint firstItem="j0c-Sm-5aj" firstAttribute="trailing" secondItem="GeI-Ph-WML" secondAttribute="trailing" id="vOm-A1-vJn"/>
+                            <constraint firstItem="Sbi-yc-Q2b" firstAttribute="bottom" secondItem="GeI-Ph-WML" secondAttribute="bottom" id="y4f-h9-Xvf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="GeI-Ph-WML"/>
                     </view>
+                    <connections>
+                        <outlet property="parkImageView" destination="j0c-Sm-5aj" id="7ld-F3-rj4"/>
+                        <outlet property="parkTableView" destination="Sbi-yc-Q2b" id="0Gi-bH-ymG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7BN-Mk-5CG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2257" y="482"/>
+            <point key="canvasLocation" x="2066.4000000000001" y="540.17991004497753"/>
         </scene>
         <!--地圖-->
         <scene sceneID="qac-Cn-c7H">
