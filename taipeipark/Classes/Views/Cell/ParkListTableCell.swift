@@ -9,8 +9,14 @@
 import UIKit
 import SDWebImage
 
+protocol ParkListTableCellDelegate {
+    func onTouchFavoriteButton(name:String)
+    func onTouchMapButton(name:String)
+}
+
 class ParkListTableCell: UITableViewCell {
     
+    var delegate:ParkListTableCellDelegate?
     let defaultImage = UIImage(named: "park")
     var url:String?
     
@@ -30,9 +36,11 @@ class ParkListTableCell: UITableViewCell {
     // MARK: Action
     
     @IBAction func onTouchFavoriteButton(_ sender: UIButton) {
+        self.delegate?.onTouchFavoriteButton(name: self.parkNameLabel.text!)
     }
     
     @IBAction func onTouchMapButton(_ sender: UIButton) {
+        self.delegate?.onTouchMapButton(name: self.parkNameLabel.text!)
     }
     
     // MARK: function

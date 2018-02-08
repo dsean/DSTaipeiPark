@@ -30,17 +30,21 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     
     var polyline:GMSPolyline?
     private var groupedParkDatas:[String:[ParkData]]!
+    var currentData: ParkData?
     
-    let kCameraLatitude = 25.0486809;
-    let kCameraLongitude = 121.5669247;
+    var isFromPark: Bool = false
+    var showFirstView: Bool = false
+    
+    var defaultCameraLatitude = 25.0486809
+    var defaultCameraLongitude = 121.5669247
     
     let locationManager = CLLocationManager()
     
-    var latValue = CLLocationDegrees()
-    var longValue = CLLocationDegrees()
+    var nowLat = CLLocationDegrees()
+    var nowLong = CLLocationDegrees()
     
-    var lat = CLLocationDegrees()
-    var long = CLLocationDegrees()
+    var currentLat = CLLocationDegrees()
+    var currentLong = CLLocationDegrees()
     
     private var mapView: GMSMapView!
     var clusterManager: GMUClusterManager!
@@ -52,6 +56,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "台北公園地圖"
         self.groupedParkDatas = ParkDataManager.sharedManager.getDefultParkData()
     }
     
@@ -59,16 +64,32 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         super.viewWillAppear(animated)
         getCurrentLocation()
         initCluster()
+        upLoadView()
     }
     
     override func loadView() {
-        let camera = GMSCameraPosition.camera(withLatitude: kCameraLatitude,
-                                              longitude: kCameraLongitude, zoom: 14)
+        var camera:GMSCameraPosition
+        if isFromPark {
+            camera = GMSCameraPosition.camera(withLatitude: currentLat,
+                                              longitude: currentLong, zoom: 16)
+        }
+        else {
+            camera = GMSCameraPosition.camera(withLatitude: defaultCameraLatitude,
+                                              longitude: defaultCameraLongitude, zoom: 16)
+        }
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.settings.myLocationButton = true
         mapView.isMyLocationEnabled = true
         self.view = mapView
         infoWindow = loadNiB()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        isFromPark = false
+        showFirstView = false
+        infoWindow.removeFromSuperview()
+        mapView.clear()
     }
     
     // MARK: Action
@@ -79,24 +100,11 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     
     func onTouchPathButton() {
         polyline?.map = nil
-        drawPath(title: "", lat: lat, long: long)
+        drawPath(title: "", lat: currentLat, long: currentLong)
     }
     
     func onTouchGoogleButton() {
-        var origin = String()
-        var destination = String()
-        origin = "\(lat),\(long)"
-        destination = "\(latValue),\(longValue)"
-        let url = "comgooglemaps://?saddr=\(origin)&daddr=\(destination)&directionsmode=driving"
-        if (UIApplication.shared.canOpenURL(URL(string:url)!)) {
-            // Open Google map.
-            UIApplication.shared.openURL(URL(string:url)!)
-        }
-        else {
-            // Go to itunes.
-            UIApplication.shared.openURL((URL(string:
-                "itms-apps://itunes.apple.com/tw/app/google-maps/id585027354?l=zh&mt=8")!))
-        }
+        openGoogleApp()
     }
     
     //  MARK: Google map.
@@ -122,6 +130,11 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         if (locationMarker != nil){
             guard let location = locationMarker?.position else {
                 print("locationMarker is nil")
+                return
+            }
+            if showFirstView {
+                showFirstView = false
+                addInfoView()
                 return
             }
             infoWindow.center = mapView.projection.point(for: location)
@@ -150,7 +163,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         infoWindow.titleInfo.text = poiItem.name!
         infoWindow.administrativeAreaLabel.text = data?.administrativeArea!
         
-        if checkDate(openTime: (data?.openTime)!) {
+        if Utilities.checkIsOpenTime(openTime: (data?.openTime)!) {
             marker.icon = GMSMarker.markerImage(with: .red)
             infoWindow.openLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
             infoWindow.closeLabel.textColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
@@ -164,8 +177,8 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
             print("locationMarker is nil")
             return false
         }
-        lat = locationMarker?.position.latitude as! CLLocationDegrees
-        long = locationMarker?.position.longitude as! CLLocationDegrees
+        currentLat = locationMarker?.position.latitude as! CLLocationDegrees
+        currentLong = locationMarker?.position.longitude as! CLLocationDegrees
         infoWindow.center = mapView.projection.point(for: location)
         infoWindow.center.y = infoWindow.center.y - sizeForOffset(view: infoWindow)
         infoWindow.delegate = self
@@ -173,7 +186,6 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         return true
     }
     
-    // Needed to create the custom info window (this is optional)
     func sizeForOffset(view: UIView) -> CGFloat {
         return  135.0
     }
@@ -210,8 +222,72 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
             let lng = Double((data?.longitude as! NSString).doubleValue)
             let name = key
             
-            let item = POIItem(position: CLLocationCoordinate2DMake(lat, lng), name: name, isOpen: checkDate(openTime: (data?.openTime)!))
+            let item = POIItem(position: CLLocationCoordinate2DMake(lat, lng), name: name, isOpen: Utilities.checkIsOpenTime(openTime: (data?.openTime)!))
             clusterManager.add(item)
+        }
+    }
+    
+    func upLoadView() {
+        var newCamera:GMSCameraPosition
+        if isFromPark {
+            showFirstView = true
+            newCamera = GMSCameraPosition.camera(withLatitude: currentLat,
+                                              longitude: currentLong, zoom: 16)
+            //addInfoView()
+        }
+        else {
+            if nowLong != 0 && nowLat != 0 {
+                newCamera = GMSCameraPosition.camera(withLatitude: nowLat,
+                                                  longitude: nowLong, zoom: 16)
+            }
+            else {
+                newCamera = GMSCameraPosition.camera(withLatitude: defaultCameraLatitude,
+                                                  longitude: defaultCameraLongitude, zoom: 16)
+            }
+        }
+        let update = GMSCameraUpdate.setCamera(newCamera)
+        mapView.moveCamera(update)
+    }
+    
+    func addInfoView()  {
+        infoWindow = loadNiB()
+        infoWindow.titleInfo.text = currentData?.parkName
+        infoWindow.administrativeAreaLabel.text = currentData?.administrativeArea!
+        
+        if Utilities.checkIsOpenTime(openTime: (currentData?.openTime)!) {
+            infoWindow.openLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+            infoWindow.closeLabel.textColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
+        }
+        else {
+            infoWindow.openLabel.textColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
+            infoWindow.closeLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        }
+        infoWindow.center = mapView.projection.point(for: CLLocationCoordinate2DMake(currentLat, currentLong))
+        infoWindow.center.y = infoWindow.center.y - sizeForOffset(view: infoWindow)
+        infoWindow.delegate = self
+        self.view.addSubview(infoWindow)
+    }
+    
+    func getCurrentLocation() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        // Call the authorizationStatus() class
+        locationManager.requestWhenInUseAuthorization()
+        // get my current locations lat, lng
+        if CLLocationManager.locationServicesEnabled() {
+            let lat = locationManager.location?.coordinate.latitude
+            let long = locationManager.location?.coordinate.longitude
+            if let lattitude = lat  {
+                if let longitude = long {
+                    nowLat = lattitude
+                    nowLong = longitude
+                }
+            }
+            else {
+                print("problem to find lat and lng")
+            }
+        }
+        else {
+            print("Location Service not Enabled. Plz enable u'r location services")
         }
     }
     
@@ -221,7 +297,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         var destination = String()
         
         origin = "\(lat),\(long)"
-        destination = "\(latValue),\(longValue)"
+        destination = "\(nowLat),\(nowLong)"
         
         let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
         origin = "\(lat),\(long)"
@@ -244,51 +320,20 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         }
     }
     
-    func getCurrentLocation() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        // Call the authorizationStatus() class
-        locationManager.requestWhenInUseAuthorization()
-        // get my current locations lat, lng
-        if CLLocationManager.locationServicesEnabled() {
-            let lat = locationManager.location?.coordinate.latitude
-            let long = locationManager.location?.coordinate.longitude
-            if let lattitude = lat  {
-                if let longitude = long {
-                    latValue = lattitude
-                    longValue = longitude
-                }
-            }
-            else {
-                print("problem to find lat and lng")
-            }
+    func openGoogleApp() {
+        var origin = String()
+        var destination = String()
+        origin = "\(currentLat),\(currentLong)"
+        destination = "\(nowLat),\(nowLong)"
+        let url = "comgooglemaps://?saddr=\(origin)&daddr=\(destination)&directionsmode=driving"
+        if (UIApplication.shared.canOpenURL(URL(string:url)!)) {
+            // Open Google map.
+            UIApplication.shared.openURL(URL(string:url)!)
         }
         else {
-            print("Location Service not Enabled. Plz enable u'r location services")
-        }
-    }
-    
-    func checkDate(openTime:String) -> Bool {
-        if openTime == "" {
-            return false
-        }
-        var strArr = openTime.components(separatedBy: "~")
-        var open = strArr[0]+":00"
-        var close = strArr[1]+":00"
-        
-        let nowDate = Date()
-        let dformatter = DateFormatter()
-        dformatter.dateFormat = "HH:mm:ss"
-        let now = dformatter.string(from: nowDate)
-        if close < open {
-            let oldClose = close
-            close = open
-            open = oldClose
-        }
-        if (now > open) && (now < close) {
-            return true
-        }
-        else {
-            return false
+            // Go to itunes.
+            UIApplication.shared.openURL((URL(string:
+                "itms-apps://itunes.apple.com/tw/app/google-maps/id585027354?l=zh&mt=8")!))
         }
     }
 }

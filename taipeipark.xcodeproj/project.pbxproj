@@ -47,6 +47,7 @@
 		9F169302202AEE56002760FD /* GQTPointQuadTreeChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1692E7202AEE56002760FD /* GQTPointQuadTreeChild.m */; };
 		9F169305202AF0B9002760FD /* MapInfoWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F169303202AF0B8002760FD /* MapInfoWindowView.xib */; };
 		9F169306202AF0B9002760FD /* MapInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169304202AF0B9002760FD /* MapInfoWindow.swift */; };
+		9F169309202C0173002760FD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169308202C0173002760FD /* Utilities.swift */; };
 		9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9271552025A93D009BD64B /* AppDelegate.swift */; };
 		9F92715B2025A93D009BD64B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9271592025A93D009BD64B /* Main.storyboard */; };
 		9F92715D2025A93D009BD64B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F92715C2025A93D009BD64B /* Assets.xcassets */; };
@@ -146,6 +147,7 @@
 		9F1692E8202AEE56002760FD /* GQTPointQuadTreeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeItem.h; sourceTree = "<group>"; };
 		9F169303202AF0B8002760FD /* MapInfoWindowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapInfoWindowView.xib; sourceTree = "<group>"; };
 		9F169304202AF0B9002760FD /* MapInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapInfoWindow.swift; sourceTree = "<group>"; };
+		9F169308202C0173002760FD /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		9F9271522025A93D009BD64B /* taipeipark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taipeipark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9271552025A93D009BD64B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F92715A2025A93D009BD64B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		9F169175202A0FED002760FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9F169307202C0173002760FD /* Utilities */,
 				9F169176202A0FED002760FD /* ParkData */,
 			);
 			path = Model;
@@ -381,6 +384,14 @@
 				9F1692E8202AEE56002760FD /* GQTPointQuadTreeItem.h */,
 			);
 			path = QuadTree;
+			sourceTree = "<group>";
+		};
+		9F169307202C0173002760FD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9F169308202C0173002760FD /* Utilities.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		9F9271492025A93D009BD64B = {
@@ -563,12 +574,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-taipeipark/Pods-taipeipark-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS10.3/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON-iOS10.3/Alamofire_SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper-iOS10.3/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper-iOS10.3/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS10.3/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS10.3/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -629,12 +640,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-taipeiparkTests/Pods-taipeiparkTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS10.0/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON-iOS10.0/Alamofire_SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper-iOS10.0/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper-iOS10.0/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS10.0/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS10.0/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -711,6 +722,7 @@
 				9F1692F1202AEE56002760FD /* GMUDefaultClusterIconGenerator.m in Sources */,
 				9F169300202AEE56002760FD /* GMUWeightedLatLng.m in Sources */,
 				9F1692EE202AEE56002760FD /* GMUWrappingDictionaryKey.m in Sources */,
+				9F169309202C0173002760FD /* Utilities.swift in Sources */,
 				9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */,
 				9F1692F5202AEE56002760FD /* GMUKMLParser.m in Sources */,
 				9F1692F2202AEE56002760FD /* GMUDefaultClusterRenderer.m in Sources */,
@@ -892,7 +904,7 @@
 					"$(PROJECT_DIR)/taipeipark/Vendors/GoogleMap",
 				);
 				INFOPLIST_FILE = taipeipark/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -920,7 +932,7 @@
 					"$(PROJECT_DIR)/taipeipark/Vendors/GoogleMap",
 				);
 				INFOPLIST_FILE = taipeipark/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
