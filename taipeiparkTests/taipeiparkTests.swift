@@ -33,4 +33,55 @@ class taipeiparkTests: XCTestCase {
         }
     }
     
+    func testRequestParkInfo() {
+        let expectation = self.expectation(description: "Expectation")
+        ParkDataManager.sharedManager.requestParkInfo { (datas, success) in
+            XCTAssert(success, "api issue")
+            XCTAssert(datas != nil)
+            XCTAssert(datas!.count > 0)
+            for key in datas!.keys {
+                for data in datas![key]! {
+                    XCTAssert(data.parkName != nil && !data.parkName.isEmpty)
+                    XCTAssert(data.introduction != nil, "introduction: \(data.introduction!)")
+                }
+            }
+            expectation.fulfill()
+        }
+        self.waitForExpectations(timeout: 30) { (exp) in
+            
+        }
+    }
+    
+    func testParseResults() {
+        // !!!:must after testRequestParkInfo.
+        XCTAssertTrue(ParkDataManager.sharedManager.parseResults(rawString: UserDefaults.standard.string(forKey: KEY)))
+        XCTAssertFalse(ParkDataManager.sharedManager.parseResults(rawString: ""))
+    }
+    
+    func testRequestParkDetailInfo() {
+        let expectation = self.expectation(description: "Expectation")
+        ParkDataManager.sharedManager.requestParkDetailInfo(parkName: "二二八和平公園", completion: { (datas, success) in
+            XCTAssert(success, "api issue")
+            XCTAssert(datas != nil)
+            XCTAssert(datas!.count > 0)
+            for key in datas!.keys {
+                for data in datas![key]! {
+                    XCTAssert(data.name != nil && !data.name.isEmpty)
+                    XCTAssert(data.parkName != nil && !data.parkName.isEmpty)
+                    XCTAssert(data.introduction != nil, "introduction: \(data.introduction!)")
+                }
+            }
+            expectation.fulfill()
+        })
+        self.waitForExpectations(timeout: 30) { (exp) in
+            
+        }
+    }
+    
+    func testParseDetailResults() {
+        // !!!:must after testRequestParkDetailInfo.
+        XCTAssertTrue(ParkDataManager.sharedManager.parseDetailResults(rawString: UserDefaults.standard.string(forKey: DETAIL_KEY)))
+        XCTAssertFalse(ParkDataManager.sharedManager.parseDetailResults(rawString: ""))
+    }
+    
 }
