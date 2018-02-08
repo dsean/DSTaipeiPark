@@ -23,16 +23,36 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
     var parkName:String = ""
     var location:String = ""
     
+    var myFavoriteButton:UIBarButtonItem?
+    
     // MARK: lifCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let mapButton = UIBarButtonItem(title: "map", style: .done, target: self, action: #selector(onTouchMapButton))
+        var favoriteImage: UIImage?
+        let isMyFavorite = ParkDataManager.sharedManager.isMyFavorite(name: (groupedParkData?.parkName)!)
+        if isMyFavorite {
+            favoriteImage = UIImage(named: "ic_myfavorite")
+        }
+        else {
+            favoriteImage = UIImage(named: "ic_myfavorite_disable")
+        }
+        
+        myFavoriteButton = UIBarButtonItem.init(image: UIImage(named: "ic_myfavorite_disable"), style: .plain, target: self, action: #selector(onTouchMyFavoriteButton))
+        myFavoriteButton?.setBackgroundImage(favoriteImage, for: .normal, barMetrics: UIBarMetrics.default)
+        
+        navigationItem.rightBarButtonItems = [myFavoriteButton!, mapButton]
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateDetailUI()
         updatGroupedParkDatas()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,6 +146,7 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
         
         for data in self.groupedParkDetailDatas[self.parkTitle!]! {
             if data.name == name {
+                self.parkTableView.setContentOffset(CGPoint.zero, animated:false)
                 goToRelatedParkView(title: name, data: data)
             }
         }
@@ -133,6 +154,30 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: Action
     
+    @objc func onTouchMyFavoriteButton(sender: AnyObject) {
+        let isMyFavorite = ParkDataManager.sharedManager.isMyFavorite(name: parkName)
+        ParkDataManager.sharedManager.saveIsFavorite(name: parkName, isFavorite: !isMyFavorite)
+        var favoriteImage :UIImage?
+        if !isMyFavorite {
+            favoriteImage = UIImage(named: "ic_myfavorite")
+        }
+        else {
+            favoriteImage = UIImage(named: "ic_myfavorite_disable")
+        }
+        myFavoriteButton?.setBackgroundImage(favoriteImage, for: .normal, barMetrics: UIBarMetrics.default)
+    }
+    
+    @objc func onTouchMapButton(sender: AnyObject) {
+        let data = self.groupedParkData
+        if let mpaViewController = (self.tabBarController?.viewControllers?[1] as? UINavigationController)?.viewControllers.first as? ParkMapViewController {
+            mpaViewController.currentLat = Double((data?.latitude as! NSString).doubleValue)
+            mpaViewController.currentLong = Double((data?.longitude as! NSString).doubleValue)
+            mpaViewController.currentData = data
+            mpaViewController.isFromPark = true
+            self.tabBarController?.selectedIndex = 1
+        }
+    }
+
     func goToRelatedParkView(title:String, data:ParkDetailData) {
         // Go to RelatedParkViewController.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

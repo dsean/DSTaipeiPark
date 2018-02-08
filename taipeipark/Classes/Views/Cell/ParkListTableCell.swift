@@ -36,6 +36,14 @@ class ParkListTableCell: UITableViewCell {
     // MARK: Action
     
     @IBAction func onTouchFavoriteButton(_ sender: UIButton) {
+        let isMyFavorite = ParkDataManager.sharedManager.isMyFavorite(name: self.parkNameLabel.text!)
+        ParkDataManager.sharedManager.saveIsFavorite(name: self.parkNameLabel.text!, isFavorite: !isMyFavorite)
+        if !isMyFavorite {
+            self.favoriteButton.setImage(UIImage(named: "ic_myfavorite"), for: .normal)
+        }
+        else {
+            self.favoriteButton.setImage(UIImage(named: "ic_myfavorite_disable"), for: .normal)
+        }
         self.delegate?.onTouchFavoriteButton(name: self.parkNameLabel.text!)
     }
     
