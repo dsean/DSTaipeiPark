@@ -134,6 +134,7 @@ class ParkDataManager {
         return false
     }
     
+    // Favorite
     func getFavoriteDatas() -> [String:[ParkData]]! {
         var newData:[String:[ParkData]]! = [:]
         let data = UserDefaults.standard.dictionary(forKey: FAVORITE_KEY)
@@ -170,5 +171,33 @@ class ParkDataManager {
             return false
         }
         return false
+    }
+    
+    func getNearbyPark(lat: Double, long: Double) -> String {
+        var parkName: String?
+        var distance: String! = nil
+        if self.groupedParkDatas == nil {
+            return ""
+        }
+        for key in self.groupedParkDatas!.keys {
+            if let data = self.groupedParkDatas?[key]![0] {
+                
+                if distance == nil {
+                    parkName = data.parkName
+                    distance = Utilities.getDistance(lat1: lat, long1: long, lat2: Double(data.latitude)!, long2: Double(data.longitude)!)
+                }
+                else {
+                    let newDistance = Utilities.getDistance(lat1: lat, long1: long, lat2: Double(data.latitude)!, long2: Double(data.longitude)!)
+                    if Double(newDistance)! < Double(distance)! {
+                        parkName = data.parkName
+                        distance = newDistance
+                    }
+                }
+            }
+            else {
+              return ""
+            }
+        }
+        return parkName!
     }
 }
