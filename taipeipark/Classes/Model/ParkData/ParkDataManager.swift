@@ -12,7 +12,7 @@ import Alamofire
 import SwiftyJSON
 
 let KEY:String = "PARK_DATA"
-
+let FAVORITE_KEY:String = "FAVORITE_KEY"
 let DETAIL_KEY:String = "PARK_DETAIL_DATA"
 
 class ParkDataManager {
@@ -130,6 +130,44 @@ class ParkDataManager {
                 }
             }
             return true
+        }
+        return false
+    }
+    
+    func getFavoriteDatas() -> [String:[ParkData]]! {
+        var newData:[String:[ParkData]]! = [:]
+        let data = UserDefaults.standard.dictionary(forKey: FAVORITE_KEY)
+        if data != nil {
+            for key in (data?.keys)! {
+                let isFavorite = isMyFavorite(name: key)
+                if isFavorite {
+                    newData[key] = self.groupedParkDatas![key]
+                }
+            }
+            return newData
+        }
+        return nil
+    }
+    
+    func saveIsFavorite(name: String, isFavorite: Bool) {
+        var data = UserDefaults.standard.dictionary(forKey: FAVORITE_KEY)
+        
+        if data == nil {
+            data = Dictionary()
+        }
+        data![name] = isFavorite
+        
+        UserDefaults.standard.set(data, forKey: FAVORITE_KEY)
+        UserDefaults.standard.synchronize()
+    }
+    
+    func isMyFavorite(name: String) -> Bool {
+        var data = UserDefaults.standard.dictionary(forKey: FAVORITE_KEY)
+        if data != nil {
+            if let isMyFavorite = data?[name] {
+                return isMyFavorite as! Bool
+            }
+            return false
         }
         return false
     }

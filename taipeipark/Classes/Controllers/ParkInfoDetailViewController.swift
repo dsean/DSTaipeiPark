@@ -35,6 +35,10 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
         updatGroupedParkDatas()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -126,6 +130,7 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
         
         for data in self.groupedParkDetailDatas[self.parkTitle!]! {
             if data.name == name {
+                self.parkTableView.setContentOffset(CGPoint.zero, animated:false)
                 goToRelatedParkView(title: name, data: data)
             }
         }

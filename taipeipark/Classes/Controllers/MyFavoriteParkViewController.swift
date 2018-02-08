@@ -1,44 +1,42 @@
 //
-//  ParkListViewController.swift
+//  MyFavoriteParkViewController.swift
 //  taipeipark
 //
-//  Created by 楊德忻 on 2018/2/6.
+//  Created by 楊德忻 on 2018/2/8.
 //  Copyright © 2018年 sean. All rights reserved.
 //
 
 import UIKit
 
-import Alamofire
-import SwiftyJSON
+class MyFavoriteParkViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ParkListTableCellDelegate {
 
-class ParkListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ParkListTableCellDelegate {
-    
-    //Pre-linked with IBOutlets
     @IBOutlet weak var parkListTableView: UITableView!
     
     private var groupedParkDatas:[String:[ParkData]]!
     private var parkTitles:[String]?
     
-    // MARK: lifCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.groupedParkDatas = ParkDataManager.sharedManager.getFavoriteDatas()
+        self.parkTitles = Array(self.groupedParkDatas!.keys)
         parkListTableView.delegate = self
         parkListTableView.dataSource = self
         parkListTableView.tableFooterView = UIView()
-        self.title = "台北市公園列表"
-        
-        updatGroupedParkDatas()
+        self.title = "我的最愛公園列表"
+
         self.parkListTableView.reloadData()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Table view data source
@@ -83,28 +81,6 @@ class ParkListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    // MARK: function
-    
-    private func updatGroupedParkDatas() {
-        if self.groupedParkDatas == nil {
-            ParkDataManager.sharedManager.requestParkInfo(completion: { [weak self] (groupedDatas,success) in
-                
-                if groupedDatas != nil && groupedDatas!.count > 0 {
-                    self?.groupedParkDatas = groupedDatas
-                    self?.parkTitles = Array(groupedDatas!.keys)
-                    self?.parkListTableView.reloadData()
-                }
-                
-                if !success {
-                    let useCache = groupedDatas != nil && groupedDatas!.count > 0
-                    let noDataAlert = UIAlertController(title: "Get data fail", message: useCache ? "":"", preferredStyle: .alert)
-                    noDataAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self?.present(noDataAlert, animated: true, completion: nil)
-                }
-            })
-        }
-    }
-    
     // MARK: Action
     
     func goToDetailParkInfoView(title:String, data:ParkData) {
@@ -132,4 +108,3 @@ class ParkListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 }
-

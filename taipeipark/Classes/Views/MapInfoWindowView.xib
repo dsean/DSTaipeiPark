@@ -26,7 +26,7 @@
                     <state key="selected" image="ic_myfavorite"/>
                     <state key="highlighted" image="ic_myfavorite"/>
                     <connections>
-                        <action selector="onTouchFButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="w2G-mv-9ik"/>
+                        <action selector="onTouchFavoriteButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="WWC-jU-2oh"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zs6-1B-FCh">
@@ -93,6 +93,7 @@
             <connections>
                 <outlet property="administrativeAreaLabel" destination="wBC-aW-ee7" id="7gy-Qf-wIU"/>
                 <outlet property="closeLabel" destination="yLr-s7-Vaq" id="szv-jx-RVz"/>
+                <outlet property="favoriteButton" destination="Dvg-8O-HAs" id="j4O-Of-plY"/>
                 <outlet property="openLabel" destination="3TR-w4-qqf" id="ALp-rn-hi2"/>
                 <outlet property="titleInfo" destination="PdP-y5-Vof" id="t8T-S0-lii"/>
             </connections>

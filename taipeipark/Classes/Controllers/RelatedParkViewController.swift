@@ -32,7 +32,6 @@ class RelatedParkViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewWillAppear(animated)
         parkTableView.delegate = self
         parkTableView.dataSource = self
-        print(groupedParkData)
         updateDetailUI()
     }
     
