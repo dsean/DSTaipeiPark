@@ -11,7 +11,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ParkListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ParkListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ParkListTableCellDelegate {
     
     //Pre-linked with IBOutlets
     @IBOutlet weak var parkListTableView: UITableView!
@@ -59,6 +59,7 @@ class ParkListViewController: UIViewController, UITableViewDelegate, UITableView
             cell.parkNameLabel.text = data.parkName
             cell.administrativeAreaLabel.text = data.administrativeArea
             cell.introLabel.text = data.introduction
+            cell.delegate = self
             cell.reloadUI()
             return cell
         }
@@ -104,6 +105,22 @@ class ParkListViewController: UIViewController, UITableViewDelegate, UITableView
         detailViewController.parkTitle = title
         detailViewController.groupedParkData = data
         self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
+    // MARK: ParkListTableCellDelegate
+    func onTouchFavoriteButton(name:String) {
+        
+    }
+    
+    func onTouchMapButton(name:String) {
+        let data = self.groupedParkDatas[name]?[0]
+        if let mpaViewController = (self.tabBarController?.viewControllers?[1] as? UINavigationController)?.viewControllers.first as? ParkMapViewController {
+            mpaViewController.currentLat = Double((data?.latitude as! NSString).doubleValue)
+            mpaViewController.currentLong = Double((data?.longitude as! NSString).doubleValue)
+            mpaViewController.currentData = data
+            mpaViewController.isFromPark = true
+            self.tabBarController?.selectedIndex = 1
+        }
     }
 }
 

@@ -30,7 +30,12 @@ class ParkDataManager {
     
     private init(){}
     
-    private(set) var groupedParkDatas:[String:[ParkData]]?
+    private var groupedParkDatas:[String:[ParkData]]?
+    
+    func getDefultParkData() -> [String:[ParkData]]! {
+        self.parseResults(rawString: UserDefaults.standard.string(forKey: KEY))
+        return self.groupedParkDatas
+    }
     
     // Request Taipei park data.
     
@@ -80,7 +85,7 @@ class ParkDataManager {
         return false
     }
     
-    private(set) var groupedParkDetailDatas:[String:[ParkDetailData]]?
+    private var groupedParkDetailDatas:[String:[ParkDetailData]]?
     
     // Request Taipei park detail data.
     
