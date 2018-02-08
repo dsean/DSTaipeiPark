@@ -54,14 +54,6 @@ class MyFavoriteParkViewController: UIViewController, UITableViewDelegate, UITab
         // Set park data to list view
         if let park = self.parkTitles?[indexPath.row], let data = self.groupedParkDatas[park]?[0] {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ParkListTableCell", for: indexPath) as! ParkListTableCell
-            let isMyFavorite = ParkDataManager.sharedManager.isMyFavorite(name: data.parkName)
-            if isMyFavorite {
-                cell.favoriteButton.setImage(UIImage(named: "ic_myfavorite"), for: .normal)
-            }
-            else {
-                cell.favoriteButton.setImage(UIImage(named: "ic_myfavorite_disable"), for: .normal)
-            }
-            
             cell.url = data.image
             cell.parkNameLabel.text = data.parkName
             cell.administrativeAreaLabel.text = data.administrativeArea
