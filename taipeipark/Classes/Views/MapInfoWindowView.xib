@@ -52,15 +52,6 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaS-sV-5AR">
-                    <rect key="frame" x="66" y="95" width="162" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="162" id="uQE-PI-v66"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MSK-ph-gAo">
                     <rect key="frame" x="66" y="125" width="31" height="30"/>
                     <state key="normal" title="路線"/>
@@ -68,26 +59,41 @@
                         <action selector="onTouchPathButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="O8W-x1-s3f"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="營業中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TR-w4-qqf">
+                    <rect key="frame" x="60" y="96" width="52" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="休息中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLr-s7-Vaq">
+                    <rect key="frame" x="182" y="96" width="52" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="yLr-s7-Vaq" secondAttribute="trailing" constant="60" id="5ju-gr-cOn"/>
+                <constraint firstItem="3TR-w4-qqf" firstAttribute="top" secondItem="wBC-aW-ee7" secondAttribute="bottom" constant="20" id="6E8-C6-h2V"/>
+                <constraint firstItem="yLr-s7-Vaq" firstAttribute="top" secondItem="wBC-aW-ee7" secondAttribute="bottom" constant="20" id="AJJ-b9-HKv"/>
+                <constraint firstItem="3TR-w4-qqf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="BtI-et-kDs"/>
                 <constraint firstAttribute="trailing" secondItem="Dvg-8O-HAs" secondAttribute="trailing" constant="16" id="Fwm-ZM-YOw"/>
+                <constraint firstAttribute="bottom" secondItem="zs6-1B-FCh" secondAttribute="bottom" constant="20" id="RsA-vK-n0a"/>
                 <constraint firstItem="PdP-y5-Vof" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TDs-V0-9gr"/>
-                <constraint firstItem="YaS-sV-5AR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WyY-52-J30"/>
-                <constraint firstItem="YaS-sV-5AR" firstAttribute="top" secondItem="wBC-aW-ee7" secondAttribute="bottom" constant="19" id="X1l-7f-9KG"/>
-                <constraint firstItem="YaS-sV-5AR" firstAttribute="leading" secondItem="MSK-ph-gAo" secondAttribute="trailing" constant="-31" id="Y3t-bM-A3t"/>
-                <constraint firstItem="zs6-1B-FCh" firstAttribute="leading" secondItem="YaS-sV-5AR" secondAttribute="trailing" constant="-31" id="cgm-AI-msR"/>
-                <constraint firstItem="zs6-1B-FCh" firstAttribute="top" secondItem="YaS-sV-5AR" secondAttribute="bottom" constant="9" id="djv-pF-JbL"/>
+                <constraint firstAttribute="bottom" secondItem="MSK-ph-gAo" secondAttribute="bottom" constant="20" id="ZcY-97-gad"/>
                 <constraint firstItem="PdP-y5-Vof" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="eOf-bl-jVJ"/>
                 <constraint firstItem="wBC-aW-ee7" firstAttribute="firstBaseline" secondItem="PdP-y5-Vof" secondAttribute="baseline" constant="30" id="hlT-df-knF"/>
                 <constraint firstItem="wBC-aW-ee7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iMS-Gh-40G"/>
-                <constraint firstItem="MSK-ph-gAo" firstAttribute="top" secondItem="YaS-sV-5AR" secondAttribute="bottom" constant="9" id="inB-Kf-XEz"/>
                 <constraint firstItem="Dvg-8O-HAs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="qhg-Hl-HnR"/>
+                <constraint firstAttribute="trailing" secondItem="zs6-1B-FCh" secondAttribute="trailing" constant="66" id="uVN-PJ-pfQ"/>
+                <constraint firstItem="MSK-ph-gAo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="66" id="wyi-J5-Isg"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="administrativeAreaLabel" destination="wBC-aW-ee7" id="7gy-Qf-wIU"/>
-                <outlet property="openTimeLabel" destination="YaS-sV-5AR" id="Mx0-Yf-ntJ"/>
+                <outlet property="closeLabel" destination="yLr-s7-Vaq" id="szv-jx-RVz"/>
+                <outlet property="openLabel" destination="3TR-w4-qqf" id="ALp-rn-hi2"/>
                 <outlet property="titleInfo" destination="PdP-y5-Vof" id="t8T-S0-lii"/>
             </connections>
             <point key="canvasLocation" x="313" y="-18.5"/>

@@ -25,5 +25,7 @@
  */
 @property(nonatomic, readonly) CLLocationCoordinate2D position;
 
+@property(nonatomic) BOOL isOpen;
+    
 @end
 

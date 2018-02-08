@@ -44,7 +44,7 @@ class ParkData:Mappable, Equatable {
     private(set) var area:String!
     private(set) var managementName:String!
     private(set) var manageTelephone:String!
-    private(set) var openTime:String = "00:00~24:00"
+    private(set) var openTime:String = ""
     private(set) var image:String?
     private(set) var introduction:String!
     private(set) var id:String!

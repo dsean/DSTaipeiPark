@@ -307,7 +307,17 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
   marker.userData = userData;
   if (clusterIcon != nil) {
     marker.icon = clusterIcon;
+      
     marker.groundAnchor = CGPointMake(0.5, 0.5);
+  }
+  else {
+      id<GMUClusterItem>item = userData;
+      if (item.isOpen) {
+          marker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
+      }
+      else {
+          marker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
+      }
   }
   marker.zIndex = _zIndex;
 

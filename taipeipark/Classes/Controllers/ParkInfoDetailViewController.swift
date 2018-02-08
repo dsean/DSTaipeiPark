@@ -27,15 +27,10 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.parkTableView.register(UINib(nibName: "ParkDetailCell", bundle: nil), forCellReuseIdentifier: "ParkDetailCell")
-        parkTableView.separatorStyle = .none
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        parkTableView.delegate = self
-        parkTableView.dataSource = self
-        
         updateDetailUI()
         updatGroupedParkDatas()
     }
@@ -57,11 +52,15 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ParkDetailCell", for: indexPath) as! ParkDetailCell
+        var openTime = self.groupedParkData!.openTime
+        if self.groupedParkData!.openTime == "" {
+            openTime = "無資料"
+        }
         
         cell.parkNameLabel.text = parkName
         cell.locationLabel.text = location
         cell.introLabel.text = self.groupedParkData!.introduction
-        cell.openTimeLabel.text = "開放時間：\(self.groupedParkData!.openTime)"
+        cell.openTimeLabel.text = "開放時間：\(openTime)"
         cell.relatedCollectionView.isHidden = true
         cell.relatedTitleLabel.isHidden = true
         if self.groupedParkDetailDatas != nil {
@@ -97,6 +96,12 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func updateDetailUI() {
+        
+        parkTableView.register(UINib(nibName: "ParkDetailCell", bundle: nil), forCellReuseIdentifier: "ParkDetailCell")
+        parkTableView.separatorStyle = .none
+        parkTableView.delegate = self
+        parkTableView.dataSource = self
+        
         self.title = groupedParkData?.parkName
         
         parkName = self.groupedParkData!.parkName
@@ -118,6 +123,7 @@ class ParkInfoDetailViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - ParkDetailCellDelegate
     
     func onTouchUpInside(name:String) {
+        
         for data in self.groupedParkDetailDatas[self.parkTitle!]! {
             if data.name == name {
                 goToRelatedParkView(title: name, data: data)

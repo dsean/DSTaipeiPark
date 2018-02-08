@@ -1,9 +1,8 @@
 //
 //  MapInfoWindow.swift
-//  GoogleMapsCustomInfoWindow
 //
-//  Created by Sofía Swidarowicz Andrade on 11/5/17.
-//  Copyright © 2017 Sofía Swidarowicz Andrade. All rights reserved.
+//  Created by 楊德忻 on 2018/2/6.
+//  Copyright © 2018年 sean. All rights reserved.
 //
 
 import UIKit
@@ -20,7 +19,8 @@ class MapInfoWindow: UIView {
     
     @IBOutlet weak var titleInfo: UILabel!
 
-    @IBOutlet weak var openTimeLabel: UILabel!
+    @IBOutlet weak var openLabel: UILabel!
+    @IBOutlet weak var closeLabel: UILabel!
     @IBOutlet weak var administrativeAreaLabel: UILabel!
     @IBAction func onTouchFButton(_ sender: Any) {
         
