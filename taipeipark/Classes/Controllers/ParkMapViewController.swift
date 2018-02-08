@@ -62,6 +62,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        showFirstView = true
         getCurrentLocation()
         initCluster()
         upLoadView()
@@ -100,7 +101,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     
     func onTouchPathButton() {
         polyline?.map = nil
-        drawPath(title: "", lat: currentLat, long: currentLong)
+        drawPath(lat: currentLat, long: currentLong)
     }
     
     func onTouchGoogleButton() {
@@ -132,11 +133,15 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
                 print("locationMarker is nil")
                 return
             }
+            
             if showFirstView {
                 showFirstView = false
-                addInfoView()
+                if currentData != nil {
+                    addInfoView()
+                }
                 return
             }
+
             infoWindow.center = mapView.projection.point(for: location)
             infoWindow.center.y = infoWindow.center.y - sizeForOffset(view: infoWindow)
         }
@@ -216,33 +221,46 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     
     // cluster manager.
     private func generateClusterItems() {
-        for key in self.groupedParkDatas!.keys {
-            let data = self.groupedParkDatas[key]?[0]
-            let lat = Double((data?.latitude as! NSString).doubleValue)
-            let lng = Double((data?.longitude as! NSString).doubleValue)
-            let name = key
-            
-            let item = POIItem(position: CLLocationCoordinate2DMake(lat, lng), name: name, isOpen: Utilities.checkIsOpenTime(openTime: (data?.openTime)!))
-            clusterManager.add(item)
+        self.groupedParkDatas = ParkDataManager.sharedManager.getDefultParkData()
+        if self.groupedParkDatas != nil {
+            for key in self.groupedParkDatas!.keys {
+                let data = self.groupedParkDatas[key]?[0]
+                let lat = Double(data!.latitude!)!
+                let lng = Double(data!.longitude)!
+                let name = key
+                
+                let item = POIItem(position: CLLocationCoordinate2DMake(lat, lng), name: name, isOpen: Utilities.checkIsOpenTime(openTime: (data?.openTime)!))
+                clusterManager.add(item)
+            }
+        }
+        else {
+            let noDataAlert = UIAlertController(title: "Has no Data Yet.", message:"", preferredStyle: .alert)
+            noDataAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(noDataAlert, animated: true, completion: nil)
         }
     }
     
     func upLoadView() {
-        var newCamera:GMSCameraPosition
+        var newCamera:GMSCameraPosition = GMSCameraPosition.camera(withLatitude: defaultCameraLatitude,                                                                  longitude: defaultCameraLongitude, zoom: 16)
         if isFromPark {
             showFirstView = true
             newCamera = GMSCameraPosition.camera(withLatitude: currentLat,
                                               longitude: currentLong, zoom: 16)
-            //addInfoView()
         }
         else {
             if nowLong != 0 && nowLat != 0 {
-                newCamera = GMSCameraPosition.camera(withLatitude: nowLat,
-                                                  longitude: nowLong, zoom: 16)
+                groupedParkDatas = ParkDataManager.sharedManager.getDefultParkData()
+                let name = ParkDataManager.sharedManager.getNearbyPark(lat: nowLat, long: nowLong)
+                if groupedParkDatas != nil {
+                    currentData = groupedParkDatas[name]?[0]
+                    currentLat = Double(currentData!.latitude!)!
+                    currentLong = Double(currentData!.longitude!)!
+                    newCamera = GMSCameraPosition.camera(withLatitude:Double(currentData!.latitude!)!,
+                                                         longitude: Double(currentData!.longitude!)!, zoom: 16)
+                }
             }
             else {
-                newCamera = GMSCameraPosition.camera(withLatitude: defaultCameraLatitude,
-                                                  longitude: defaultCameraLongitude, zoom: 16)
+                showFirstView = false
             }
         }
         let update = GMSCameraUpdate.setCamera(newCamera)
@@ -283,7 +301,9 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
                 }
             }
             else {
-                print("problem to find lat and lng")
+                let noDataAlert = UIAlertController(title: "Please allow DPS.", message:"", preferredStyle: .alert)
+                noDataAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(noDataAlert, animated: true, completion: nil)
             }
         }
         else {
@@ -291,7 +311,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         }
     }
     
-    func drawPath(title: String, lat: CLLocationDegrees , long: CLLocationDegrees) {
+    func drawPath(lat: CLLocationDegrees , long: CLLocationDegrees) {
         
         var origin = String()
         var destination = String()

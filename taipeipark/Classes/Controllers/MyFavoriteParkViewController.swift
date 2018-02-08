@@ -25,7 +25,9 @@ class MyFavoriteParkViewController: UIViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
         
         self.groupedParkDatas = ParkDataManager.sharedManager.getFavoriteDatas()
-        self.parkTitles = Array(self.groupedParkDatas!.keys)
+        if self.groupedParkDatas != nil {
+            self.parkTitles = Array(self.groupedParkDatas!.keys)
+        }
         parkListTableView.delegate = self
         parkListTableView.dataSource = self
         parkListTableView.tableFooterView = UIView()
