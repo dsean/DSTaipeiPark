@@ -47,12 +47,14 @@ class MapInfoWindow: UIView {
     }
     
     func updateUI() {
-        let isMyFavorite = ParkDataManager.sharedManager.isMyFavorite(name: self.titleInfo.text!)
-        if isMyFavorite {
-            self.favoriteButton.setImage(UIImage(named: "ic_myfavorite"), for: .normal)
-        }
-        else {
-            self.favoriteButton.setImage(UIImage(named: "ic_myfavorite_disable"), for: .normal)
+        if self.titleInfo.text != nil {
+            let isMyFavorite = ParkDataManager.sharedManager.isMyFavorite(name: self.titleInfo.text!)
+            if isMyFavorite {
+                self.favoriteButton.setImage(UIImage(named: "ic_myfavorite"), for: .normal)
+            }
+            else {
+                self.favoriteButton.setImage(UIImage(named: "ic_myfavorite_disable"), for: .normal)
+            }
         }
     }
 }
