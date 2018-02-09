@@ -39,6 +39,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     var defaultCameraLongitude = 121.5669247
     
     let locationManager = CLLocationManager()
+    var locationPosition: CLLocationCoordinate2D?
     
     var nowLat = CLLocationDegrees()
     var nowLong = CLLocationDegrees()
@@ -86,11 +87,6 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     }
     
     // MARK: Action
-    
-    func onTouchFButton(name: String) {
-        
-    }
-    
     func onTouchPathButton() {
         polyline?.map = nil
         drawPath(lat: currentLat, long: currentLong)
@@ -102,6 +98,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     
     //  MARK: Google map.
     
+    // Did tap mark
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if let poiItem = marker.userData as? POIItem {
             // Needed to create the custom info window
@@ -118,7 +115,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         return false
     }
     
-    // Needed to create the custom info window
+    // DidChange position
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         if (locationMarker != nil){
             guard let location = locationMarker?.position else {
@@ -138,48 +135,54 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         }
     }
     
-    // Needed to create the custom info window
-    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        return UIView()
-    }
-    
-    // Needed to create the custom info window
+    // Did tap map
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         infoWindow.removeFromSuperview()
+    }
+    
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        return UIView()
     }
     
     // MARK: function
     
     func initInfoViewItem(marker: GMSMarker,poiItem: POIItem) -> Bool {
         let data = self.groupedParkDatas[poiItem.name!]?[0]
+        currentData = data
         locationMarker = marker
-        infoWindow.removeFromSuperview()
-        infoWindow = loadNiB()
         
-        infoWindow.titleInfo.text = poiItem.name!
-        infoWindow.administrativeAreaLabel.text = data?.administrativeArea!
-        infoWindow.updateUI()
-        if Utilities.checkIsOpenTime(openTime: (data?.openTime)!) {
-            marker.icon = GMSMarker.markerImage(with: .red)
-            infoWindow.openLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-            infoWindow.closeLabel.textColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
-        }
-        else {
-            marker.icon = GMSMarker.markerImage(with: .blue)
-            infoWindow.openLabel.textColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
-            infoWindow.closeLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-        }
         guard let location = locationMarker?.position else {
             print("locationMarker is nil")
             return false
         }
+        locationPosition = location
         currentLat = locationMarker?.position.latitude as! CLLocationDegrees
         currentLong = locationMarker?.position.longitude as! CLLocationDegrees
-        infoWindow.center = mapView.projection.point(for: location)
+        infoWindow.removeFromSuperview()
+        addInfoView()
+        return true
+    }
+    
+    func addInfoView()  {
+        infoWindow = loadNiB()
+        infoWindow.titleInfo.text = currentData?.parkName
+        infoWindow.administrativeAreaLabel.text = currentData?.administrativeArea!
+        infoWindow.updateUI()
+        if Utilities.checkIsOpenTime(openTime: (currentData?.openTime)!) {
+            infoWindow.openLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+            infoWindow.closeLabel.textColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
+        }
+        else {
+            infoWindow.openLabel.textColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
+            infoWindow.closeLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        }
+        if locationPosition != nil {
+            infoWindow.center = mapView.projection.point(for: locationPosition!)
+        }
+        infoWindow.center = mapView.projection.point(for: CLLocationCoordinate2DMake(currentLat, currentLong))
         infoWindow.center.y = infoWindow.center.y - sizeForOffset(view: infoWindow)
         infoWindow.delegate = self
         self.view.addSubview(infoWindow)
-        return true
     }
     
     func sizeForOffset(view: UIView) -> CGFloat {
@@ -236,27 +239,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         mapView.moveCamera(update)
     }
     
-    func addInfoView()  {
-        infoWindow = loadNiB()
-        infoWindow.titleInfo.text = currentData?.parkName
-        infoWindow.administrativeAreaLabel.text = currentData?.administrativeArea!
-        infoWindow.updateUI()
-        if Utilities.checkIsOpenTime(openTime: (currentData?.openTime)!) {
-            infoWindow.openLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-            infoWindow.closeLabel.textColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
-        }
-        else {
-            infoWindow.openLabel.textColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
-            infoWindow.closeLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-        }
-        infoWindow.center = mapView.projection.point(for: CLLocationCoordinate2DMake(currentLat, currentLong))
-        infoWindow.center.y = infoWindow.center.y - sizeForOffset(view: infoWindow)
-        infoWindow.delegate = self
-        self.view.addSubview(infoWindow)
-    }
-    
     func getCurrentLocation() {
-        
         let location = googleMapMaker?.getCurrentLocation()
         if location != nil {
             nowLat = location!["lat"]!
