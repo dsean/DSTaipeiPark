@@ -98,7 +98,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     
     //  MARK: Google map.
     
-    // Did tap mark
+    // Did tap marker.
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if let poiItem = marker.userData as? POIItem {
             // Needed to create the custom info window
@@ -129,7 +129,6 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
                 }
                 return
             }
-
             infoWindow.center = mapView.projection.point(for: location)
             infoWindow.center.y = infoWindow.center.y - sizeForOffset(view: infoWindow)
         }
@@ -189,8 +188,8 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         return  135.0
     }
     
-    // Needed to create the custom info window (this is optional)
-    func loadNiB() -> MapInfoWindow{
+    // Load mapInfo View with xib (this is optional)
+    func loadNiB() -> MapInfoWindow {
         let infoWindow = MapInfoWindow.instanceFromNib() as! MapInfoWindow
         return infoWindow
     }
@@ -246,7 +245,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
             nowLong = location!["long"]!
         }
         else {
-            let noDataAlert = UIAlertController(title: "Please allow DPS.", message:"", preferredStyle: .alert)
+            let noDataAlert = UIAlertController(title: "Please allow GPS.", message:"", preferredStyle: .alert)
             noDataAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(noDataAlert, animated: true, completion: nil)
         }
