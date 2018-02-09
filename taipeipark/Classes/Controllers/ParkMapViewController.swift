@@ -63,18 +63,18 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         self.groupedParkDatas = ParkDataManager.sharedManager.getDefultParkData()
     }
     
+    override func loadView() {
+        mapView = googleMapMaker?.loadView()
+        self.view = mapView
+        infoWindow = loadNiB()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showFirstView = true
         getCurrentLocation()
         initCluster()
         upLoadView()
-    }
-    
-    override func loadView() {
-        mapView = googleMapMaker?.loadView()
-        self.view = mapView
-        infoWindow = loadNiB()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -209,27 +209,6 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         clusterManager.setDelegate(self, mapDelegate: self)
     }
     
-    // cluster manager.
-    private func generateClusterItems() {
-        self.groupedParkDatas = ParkDataManager.sharedManager.getDefultParkData()
-        if self.groupedParkDatas != nil {
-            for key in self.groupedParkDatas!.keys {
-                let data = self.groupedParkDatas[key]?[0]
-                let lat = Double(data!.latitude!)!
-                let lng = Double(data!.longitude)!
-                let name = key
-                
-                let item = POIItem(position: CLLocationCoordinate2DMake(lat, lng), name: name, isOpen: Utilities.checkIsOpenTime(openTime: (data?.openTime)!))
-                clusterManager.add(item)
-            }
-        }
-        else {
-            let noDataAlert = UIAlertController(title: "Has no Data Yet.", message:"", preferredStyle: .alert)
-            noDataAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(noDataAlert, animated: true, completion: nil)
-        }
-    }
-    
     func upLoadView() {
         var newCamera:GMSCameraPosition = GMSCameraPosition.camera(withLatitude: defaultCameraLatitude,                                                                  longitude: defaultCameraLongitude, zoom: 16)
         if isFromPark {
@@ -296,14 +275,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         
         origin = "\(lat),\(long)"
         destination = "\(nowLat),\(nowLong)"
-        
-        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
-        origin = "\(lat),\(long)"
-        Alamofire.request(url).responseJSON { response in
-            
-            let json = JSON(response.data!)
-            let routes = json["routes"].arrayValue
-            
+        googleMapMaker?.drawPath(origin: origin, destination: destination, callback: { (routes) in
             for route in routes {
                 self.polyline?.map = nil
                 let routeOverviewPolyline = route["overview_polyline"].dictionary
@@ -314,8 +286,8 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
                 self.polyline!.strokeColor = UIColor.red
                 self.polyline!.map = self.mapView
             }
-            
-        }
+        })
+        
     }
     
     func openGoogleApp() {
@@ -323,15 +295,6 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
         var destination = String()
         origin = "\(currentLat),\(currentLong)"
         destination = "\(nowLat),\(nowLong)"
-        let url = "comgooglemaps://?saddr=\(origin)&daddr=\(destination)&directionsmode=driving"
-        if (UIApplication.shared.canOpenURL(URL(string:url)!)) {
-            // Open Google map.
-            UIApplication.shared.openURL(URL(string:url)!)
-        }
-        else {
-            // Go to itunes.
-            UIApplication.shared.openURL((URL(string:
-                "itms-apps://itunes.apple.com/tw/app/google-maps/id585027354?l=zh&mt=8")!))
-        }
+        googleMapMaker?.openGoogleApp(origin: origin, destination: destination)
     }
 }

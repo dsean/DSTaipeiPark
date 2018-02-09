@@ -8,6 +8,8 @@
 
 import UIKit
 
+import Alamofire
+import SwiftyJSON
 import GoogleMaps
 import GooglePlaces
 
@@ -81,5 +83,29 @@ class GoogleMapMaker: NSObject {
             return false
         }
         return true
+    }
+    
+    func openGoogleApp(origin: String,destination: String) {
+        let url = "comgooglemaps://?saddr=\(origin)&daddr=\(destination)&directionsmode=driving"
+        if (UIApplication.shared.canOpenURL(URL(string:url)!)) {
+            // Open Google map.
+            UIApplication.shared.openURL(URL(string:url)!)
+        }
+        else {
+            // Go to itunes.
+            UIApplication.shared.openURL((URL(string:
+                "itms-apps://itunes.apple.com/tw/app/google-maps/id585027354?l=zh&mt=8")!))
+        }
+    }
+    
+    func drawPath(origin: String, destination: String, callback: @escaping (_ routes: [JSON]) -> Void) {
+        
+        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
+        Alamofire.request(url).responseJSON { response in
+            
+            let json = JSON(response.data!)
+            let routes = json["routes"].arrayValue
+            callback (routes)
+        }
     }
 }
