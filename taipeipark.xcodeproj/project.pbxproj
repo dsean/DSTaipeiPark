@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6EE49B87C96305E12AD48E77 /* Pods_taipeiparkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352D771CB7D6886AD0C3EB17 /* Pods_taipeiparkTests.framework */; };
 		796A54CA8FEFBF28FFE8C25A /* Pods_taipeipark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4C53B694C90B05A853E4F3 /* Pods_taipeipark.framework */; };
+		9F13230E202D1ABB00D13168 /* GoogleMapMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F13230D202D1ABB00D13168 /* GoogleMapMaker.swift */; };
 		9F169174202A0D83002760FD /* ParkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169173202A0D83002760FD /* ParkListViewController.swift */; };
 		9F169179202A0FEE002760FD /* ParkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169177202A0FED002760FD /* ParkData.swift */; };
 		9F16917A202A0FEE002760FD /* ParkDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F169178202A0FED002760FD /* ParkDataManager.swift */; };
@@ -70,6 +71,7 @@
 		352D771CB7D6886AD0C3EB17 /* Pods_taipeiparkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taipeiparkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A4C53B694C90B05A853E4F3 /* Pods_taipeipark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taipeipark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9534DBC108CD0DC151A8D319 /* Pods-taipeipark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taipeipark.release.xcconfig"; path = "Pods/Target Support Files/Pods-taipeipark/Pods-taipeipark.release.xcconfig"; sourceTree = "<group>"; };
+		9F13230D202D1ABB00D13168 /* GoogleMapMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapMaker.swift; sourceTree = "<group>"; };
 		9F169173202A0D83002760FD /* ParkListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkListViewController.swift; sourceTree = "<group>"; };
 		9F169177202A0FED002760FD /* ParkData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkData.swift; sourceTree = "<group>"; };
 		9F169178202A0FED002760FD /* ParkDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkDataManager.swift; sourceTree = "<group>"; };
@@ -184,6 +186,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F13230C202D1A8300D13168 /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				9F13230D202D1ABB00D13168 /* GoogleMapMaker.swift */,
+			);
+			path = Google;
+			sourceTree = "<group>";
+		};
 		9F16916C202A07EB002760FD /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +219,7 @@
 		9F169175202A0FED002760FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9F13230C202D1A8300D13168 /* Google */,
 				9F169307202C0173002760FD /* Utilities */,
 				9F169176202A0FED002760FD /* ParkData */,
 			);
@@ -728,6 +739,7 @@
 				9F169309202C0173002760FD /* Utilities.swift in Sources */,
 				9F9271562025A93D009BD64B /* AppDelegate.swift in Sources */,
 				9F1692F5202AEE56002760FD /* GMUKMLParser.m in Sources */,
+				9F13230E202D1ABB00D13168 /* GoogleMapMaker.swift in Sources */,
 				9F1692F2202AEE56002760FD /* GMUDefaultClusterRenderer.m in Sources */,
 				9F16918E202AC200002760FD /* RelatedParkViewController.swift in Sources */,
 				9F1692F7202AEE56002760FD /* GMUGeometryCollection.m in Sources */,
