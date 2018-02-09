@@ -52,6 +52,9 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
     
+    // GoogleMap
+    let googleMapMaker :GoogleMapMaker? = GoogleMapMaker.init()
+    
     // MARK: lifCycle
     
     override func viewDidLoad() {
@@ -69,18 +72,7 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     }
     
     override func loadView() {
-        var camera:GMSCameraPosition
-        if isFromPark {
-            camera = GMSCameraPosition.camera(withLatitude: currentLat,
-                                              longitude: currentLong, zoom: 16)
-        }
-        else {
-            camera = GMSCameraPosition.camera(withLatitude: defaultCameraLatitude,
-                                              longitude: defaultCameraLongitude, zoom: 16)
-        }
-        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        mapView.settings.myLocationButton = true
-        mapView.isMyLocationEnabled = true
+        mapView = googleMapMaker?.loadView()
         self.view = mapView
         infoWindow = loadNiB()
     }
@@ -133,7 +125,6 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
                 print("locationMarker is nil")
                 return
             }
-            
             if showFirstView {
                 showFirstView = false
                 if currentData != nil {
@@ -203,17 +194,16 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     
     // Cluster init
     func initCluster() {
-        // Set up the cluster manager with default icon generator and renderer.
-        let iconGenerator = GMUDefaultClusterIconGenerator()
-        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
-        let renderer = GMUDefaultClusterRenderer(mapView: mapView, clusterIconGenerator: iconGenerator)
-        clusterManager = GMUClusterManager(map: mapView, algorithm: algorithm, renderer: renderer)
-        
-        // Generate and add random items to the cluster manager.
-        generateClusterItems()
-        
-        // Call cluster() after items have been added to perform the clustering and rendering on map.
-        clusterManager.cluster()
+        clusterManager = googleMapMaker?.initCluster()
+        if clusterManager != nil && (googleMapMaker?.generateClusterItems(datas: self.groupedParkDatas))!  {
+            // Call cluster() after items have been added to perform the clustering and rendering on map.
+            clusterManager.cluster()
+        }
+        else {
+            let noDataAlert = UIAlertController(title: "Has no Data Yet.", message:"", preferredStyle: .alert)
+            noDataAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(noDataAlert, animated: true, completion: nil)
+        }
         
         // Register self to listen to both GMUClusterManagerDelegate and GMSMapViewDelegate events.
         clusterManager.setDelegate(self, mapDelegate: self)
@@ -287,32 +277,20 @@ class ParkMapViewController: UIViewController, GMUClusterManagerDelegate, GMSMap
     }
     
     func getCurrentLocation() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        // Call the authorizationStatus() class
-        locationManager.requestWhenInUseAuthorization()
-        // get my current locations lat, lng
-        if CLLocationManager.locationServicesEnabled() {
-            let lat = locationManager.location?.coordinate.latitude
-            let long = locationManager.location?.coordinate.longitude
-            if let lattitude = lat  {
-                if let longitude = long {
-                    nowLat = lattitude
-                    nowLong = longitude
-                }
-            }
-            else {
-                let noDataAlert = UIAlertController(title: "Please allow DPS.", message:"", preferredStyle: .alert)
-                noDataAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(noDataAlert, animated: true, completion: nil)
-            }
+        
+        let location = googleMapMaker?.getCurrentLocation()
+        if location != nil {
+            nowLat = location!["lat"]!
+            nowLong = location!["long"]!
         }
         else {
-            print("Location Service not Enabled. Plz enable u'r location services")
+            let noDataAlert = UIAlertController(title: "Please allow DPS.", message:"", preferredStyle: .alert)
+            noDataAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(noDataAlert, animated: true, completion: nil)
         }
     }
     
     func drawPath(lat: CLLocationDegrees , long: CLLocationDegrees) {
-        
         var origin = String()
         var destination = String()
         
