@@ -32,7 +32,7 @@ class taipeiparkTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
+    // ParkDataManager
     func testRequestParkInfo() {
         let expectation = self.expectation(description: "Expectation")
         ParkDataManager.sharedManager.requestParkInfo { (datas, success) in
@@ -83,5 +83,4 @@ class taipeiparkTests: XCTestCase {
         XCTAssertTrue(ParkDataManager.sharedManager.parseDetailResults(rawString: UserDefaults.standard.string(forKey: DETAIL_KEY)))
         XCTAssertFalse(ParkDataManager.sharedManager.parseDetailResults(rawString: ""))
     }
-    
 }

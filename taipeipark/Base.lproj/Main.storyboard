@@ -30,7 +30,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="N9i-b2-VMC">
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="N9i-b2-VMC">
                                                     <rect key="frame" x="177.5" y="11" width="20" height="20"/>
                                                 </activityIndicatorView>
                                             </subviews>
@@ -458,7 +458,7 @@
     <resources>
         <image name="ic_myfavorite" width="30" height="30"/>
         <image name="ic_myfavorite_disable" width="30" height="30"/>
-        <image name="map" width="42" height="42"/>
+        <image name="map" width="16" height="16"/>
         <image name="park" width="512" height="512"/>
         <image name="parkicon" width="32" height="32"/>
     </resources>
